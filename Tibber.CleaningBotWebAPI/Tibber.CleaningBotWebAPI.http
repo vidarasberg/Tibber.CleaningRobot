@@ -8,10 +8,36 @@ Content-Type: application/json
     "x": 10,
     "y": 22
   },
-  "commmands": [
+  "commands": [
     {
       "direction": "east",
       "steps": 2
+    },
+    {
+      "direction": "north",
+      "steps": 1
+    }
+  ]
+}
+
+###
+
+POST {{hostAddress}}/tibber-developer-test/enter-path/
+Content-Type: application/json
+
+{
+  "start": {
+    "x": 100002,
+    "y": 22
+  },
+  "commands": [
+    {
+      "direction": "east",
+      "steps": 2
+    },
+    {
+      "direction": "north",
+      "steps": 1
     },
     {
       "direction": "north",

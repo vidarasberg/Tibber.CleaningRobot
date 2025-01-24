@@ -1,0 +1,23 @@
+@hostAddress = http://localhost:5000
+
+POST {{hostAddress}}/tibber-developer-test/enter-path/
+Content-Type: application/json
+
+{
+  "start": {
+    "x": 10,
+    "y": 22
+  },
+  "commmands": [
+    {
+      "direction": "east",
+      "steps": 2
+    },
+    {
+      "direction": "north",
+      "steps": 1
+    }
+  ]
+}
+
+###

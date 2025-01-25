@@ -90,7 +90,7 @@ public class RobotCalculatorTests(ITestOutputHelper testOutputHelper)
 
 
         //Assert
-        Assert.True(stopwatch.Elapsed.Seconds < 1, "calculation should be less than a second");
+        Assert.True(stopwatch.Elapsed.TotalSeconds < 1, "calculation should be less than a second");
         testOutputHelper.WriteLine(stopwatch.Elapsed.ToString());
     }
 }

@@ -1,4 +1,4 @@
-using System.Diagnostics;
+using Tibber.CleaningBotWebAPI.Utils;
 
 namespace Tibber.CleaningBotWebAPI.Robot;
 
@@ -9,16 +9,14 @@ public static class RobotEndpoints
         RouteGroupBuilder group = app.MapGroup("/tibber-developer-test");
         group.MapPost("/enter-path", async (RobotRequest body, RobotDbContext robotDbContext) =>
             {
-                Stopwatch stopWatch = new();
-
-                stopWatch.Start();
-                int uniquePlacesCleaned = RobotCalculator.CalculateUniquePlacesCleaned(body.Start, body.Commands);
-                stopWatch.Stop();
+                int uniquePlacesCleaned = StopwatchUtility.MeasureExecutionTime(
+                    () => RobotCalculator.CalculateUniquePlacesCleaned(body.Start, body.Commands),
+                    out TimeSpan elapsed);
 
                 ExecutionRecord execution = new()
                 {
                     Commands = body.Commands.Length,
-                    Duration = stopWatch.Elapsed.TotalSeconds,
+                    Duration = elapsed.TotalSeconds,
                     Result = uniquePlacesCleaned,
                     Timestamp = DateTime.UtcNow
                 };

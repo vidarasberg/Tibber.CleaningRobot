@@ -37,6 +37,20 @@ public class RobotCalculatorTests(ITestOutputHelper testOutputHelper)
     }
 
     [Fact]
+    public void CalculateUniquePlacesCleaned_GoSouthTwoStepsCommands_ReturnsThree()
+    {
+        //Arrange
+        Command[] commands = [new(Direction.South, 2)];
+        Start start = new(0, 0);
+
+        //Act
+        int actual = RobotCalculator.CalculateUniquePlacesCleaned(start, commands);
+
+        //Assert
+        Assert.Equal(3, actual);
+    }
+
+    [Fact]
     public void CalculateUniquePlacesCleaned_MultipleCommands_ReturnsExpected()
     {
         //Arrange
@@ -74,7 +88,6 @@ public class RobotCalculatorTests(ITestOutputHelper testOutputHelper)
     public void CalculateUniquePlacesCleaned_TenThousandCommands_ShouldTakeLessThanASecond()
     {
         //Arrange
-
         List<Command> commands = [];
         for (int i = 0; i < 10_000; i++)
         {
@@ -90,6 +103,7 @@ public class RobotCalculatorTests(ITestOutputHelper testOutputHelper)
 
 
         //Assert
+        Assert.Equal(10_001, actual);
         Assert.True(stopwatch.Elapsed.TotalSeconds < 1, "calculation should be less than a second");
         testOutputHelper.WriteLine(stopwatch.Elapsed.ToString());
     }

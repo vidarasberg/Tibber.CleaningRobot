@@ -10,7 +10,6 @@ public static class RobotCalculator
         // Add the starting position
         uniquePlacesCleaned.Add((x, y));
 
-        // Predefine direction changes for better performance
         Dictionary<Direction, (int dx, int dy)> directionMap = new()
         {
             { Direction.North, (0, 1) },

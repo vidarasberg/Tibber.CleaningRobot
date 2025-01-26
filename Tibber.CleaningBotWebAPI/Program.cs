@@ -22,9 +22,13 @@ builder.Services.ConfigureHttpJsonOptions(options =>
 var app = builder.Build();
 app.UseExceptionHandler();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    using (IServiceScope scope = app.Services.CreateScope())
+    {
+        RobotDbContext db = scope.ServiceProvider.GetRequiredService<RobotDbContext>();
+        await db.Database.MigrateAsync();
+    }
     app.UseDeveloperExceptionPage();
     app.MapOpenApi();
 }

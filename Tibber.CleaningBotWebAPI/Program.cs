@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 using Microsoft.EntityFrameworkCore;
 
-using Tibber.CleaningBotWebAPI;
+using Tibber.CleaningBotWebAPI.Robot;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.UseUrls("http://+:5000");

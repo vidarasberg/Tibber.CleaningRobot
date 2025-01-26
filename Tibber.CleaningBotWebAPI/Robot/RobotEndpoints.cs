@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-namespace Tibber.CleaningBotWebAPI;
+namespace Tibber.CleaningBotWebAPI.Robot;
 
 public static class RobotEndpoints
 {

@@ -1,4 +1,4 @@
-namespace Tibber.CleaningBotWebAPI;
+namespace Tibber.CleaningBotWebAPI.Robot;
 
 public static class RobotCalculator
 {

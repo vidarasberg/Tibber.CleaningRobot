@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Tibber.CleaningBotWebAPI;
+namespace Tibber.CleaningBotWebAPI.Robot;
 
 public class ExecutionRecord
 {

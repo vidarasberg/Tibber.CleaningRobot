@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-using Tibber.CleaningBotWebAPI;
+using Tibber.CleaningBotWebAPI.Robot;
 
 using Xunit.Abstractions;
 

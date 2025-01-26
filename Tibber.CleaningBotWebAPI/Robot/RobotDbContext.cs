@@ -1,6 +1,6 @@
-namespace Tibber.CleaningBotWebAPI;
-
 using Microsoft.EntityFrameworkCore;
+
+namespace Tibber.CleaningBotWebAPI.Robot;
 
 public class RobotDbContext : DbContext
 {

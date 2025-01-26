@@ -1,4 +1,4 @@
-namespace Tibber.CleaningBotWebAPI;
+namespace Tibber.CleaningBotWebAPI.Robot;
 
 public record RobotRequest(
     Start Start,
@@ -14,3 +14,11 @@ public record Command(
     Direction Direction,
     int Steps
 );
+
+public enum Direction
+{
+    North = 0,
+    East = 1,
+    South = 2,
+    West = 3
+}

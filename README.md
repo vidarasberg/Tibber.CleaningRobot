@@ -16,6 +16,8 @@ docker compose up
 The project targets dotnet 9 so install the SDK or runtime.
 Configure the value of PostgreDB in appsettings.Development to use your db.
 
+NOTE: (macOS) using postgre in a container it seems that the host need to be localhost in the db connection string 
+
 NOTE: migrations are automatically applied for Development
 
 ```console

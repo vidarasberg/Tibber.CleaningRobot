@@ -13,7 +13,7 @@ docker compose up
 ```
 
 ### Alternatively using dotnet
-
+The project targets dotnet 9 so install the SDK or runtime.
 Configure the value of PostgreDB in appsettings.Development to use your db.
 
 NOTE: migrations are automatically applied for Development

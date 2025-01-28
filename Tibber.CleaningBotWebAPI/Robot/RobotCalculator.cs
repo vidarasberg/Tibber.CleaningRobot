@@ -43,11 +43,11 @@ public static class RobotCalculator
     {
         var cleanedPoints = horizontalLines
             .GroupBy(y => y.CrossAxisCoordinate)
-            .Sum(g => MergeSegments(g.OrderBy(s => s.Start)).Sum(s => s.End - s.Start + 1));
+            .Sum(g => MergeLines(g.OrderBy(s => s.Start)).Sum(s => s.End - s.Start + 1));
 
         cleanedPoints += verticalLines
             .GroupBy(x => x.CrossAxisCoordinate)
-            .Sum(g => MergeSegments(g.OrderBy(s => s.Start)).Sum(s => s.End - s.Start + 1));
+            .Sum(g => MergeLines(g.OrderBy(s => s.Start)).Sum(s => s.End - s.Start + 1));
 
         // Subtract intersections to avoid double counting
         var intersections = CountIntersections(horizontalLines, verticalLines);
@@ -55,25 +55,25 @@ public static class RobotCalculator
         return cleanedPoints - intersections;
     }
 
-    private static List<Line> MergeSegments(IEnumerable<Line> lines)
+    private static List<Line> MergeLines(IEnumerable<Line> lines)
     {
         var result = new List<Line>();
         Line? current = null;
 
-        foreach (var segment in lines)
+        foreach (var line in lines)
         {
             if (current == null)
             {
-                current = segment;
+                current = line;
                 continue;
             }
 
-            if (current.Value.End >= segment.Start - 1)
-                current = current.Value with { End = Math.Max(current.Value.End, segment.End) };
+            if (current.Value.End >= line.Start - 1)
+                current = current.Value with { End = Math.Max(current.Value.End, line.End) };
             else
             {
                 result.Add(current.Value);
-                current = segment;
+                current = line;
             }
         }
 

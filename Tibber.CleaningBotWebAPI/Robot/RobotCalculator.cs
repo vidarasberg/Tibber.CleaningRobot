@@ -41,18 +41,20 @@ public static class RobotCalculator
 
     private static int CountUniquePoints(List<Line> horizontalLines, List<Line> verticalLines)
     {
-        var cleanedPoints = horizontalLines
-            .GroupBy(y => y.CrossAxisCoordinate)
-            .Sum(g => MergeLines(g.OrderBy(s => s.Start)).Sum(s => s.End - s.Start + 1));
+        var cleanedPoints = CountPointsInLines(horizontalLines);
+        cleanedPoints += CountPointsInLines(verticalLines);
 
-        cleanedPoints += verticalLines
-            .GroupBy(x => x.CrossAxisCoordinate)
-            .Sum(g => MergeLines(g.OrderBy(s => s.Start)).Sum(s => s.End - s.Start + 1));
-
-        // Subtract intersections to avoid double counting
         var intersections = CountIntersections(horizontalLines, verticalLines);
 
         return cleanedPoints - intersections;
+    }
+
+    private static int CountPointsInLines(List<Line> lines)
+    {
+        return lines
+            .GroupBy(line => line.CrossAxisCoordinate)
+            .SelectMany(MergeLines)
+            .Sum(line => line.End - line.Start + 1);
     }
 
     private static List<Line> MergeLines(IEnumerable<Line> lines)
@@ -60,7 +62,7 @@ public static class RobotCalculator
         var result = new List<Line>();
         Line? current = null;
 
-        foreach (var line in lines)
+        foreach (var line in lines.OrderBy(s => s.Start))
         {
             if (current == null)
             {
